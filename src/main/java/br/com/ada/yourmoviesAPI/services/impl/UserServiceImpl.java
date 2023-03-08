@@ -18,7 +18,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDTO saveUser(UserEntity user) {
-        UserDTO userDTO = UserDTO.builder().build().convertEntityToDTO(user);
+        UserDTO userDTO = UserDTO.builder().build().convertUserEntityToDTO(user);
         userRepository.save(user);
         return userDTO;
     }
@@ -28,6 +28,7 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findByEmail(email).orElse(null); //TODO fazer uma exception
 
     }
+
 
     @Override
     public List<UserEntity> findAllUsers() {

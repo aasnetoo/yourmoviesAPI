@@ -14,7 +14,7 @@ public class UserDTO {
     private String name;
     private String email;
 
-    public UserDTO convertEntityToDTO (UserEntity userEntity){
+    public UserDTO convertUserEntityToDTO (UserEntity userEntity){
         BeanUtils.copyProperties(userEntity,this,"id", "password", "moviesEntity");
         return this;
     }

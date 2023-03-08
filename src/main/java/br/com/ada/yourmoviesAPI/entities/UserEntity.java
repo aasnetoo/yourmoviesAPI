@@ -24,7 +24,7 @@ public class UserEntity {
 
     @OneToMany
     @JoinColumn(name = "users_id")
-    private Set<MoviesEntity> moviesEntity;
+    private Set<MovieEntity> moviesEntity;
 
 
 

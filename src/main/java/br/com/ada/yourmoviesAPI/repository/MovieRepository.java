@@ -1,9 +1,9 @@
 package br.com.ada.yourmoviesAPI.repository;
 
-import br.com.ada.yourmoviesAPI.entities.MoviesEntity;
+import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MoviesRepository extends JpaRepository<MoviesEntity,Long> {
+public interface MovieRepository extends JpaRepository<MovieEntity,Long> {
 }
