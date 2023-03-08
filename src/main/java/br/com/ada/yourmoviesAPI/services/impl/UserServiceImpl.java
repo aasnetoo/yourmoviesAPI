@@ -17,9 +17,12 @@ public class UserServiceImpl implements IUserService {
     UserRepository userRepository;
 
     @Override
-    public UserDTO saveUser(UserEntity user) {
-        UserDTO userDTO = UserDTO.builder().build().convertEntityToDTO(user);
-        userRepository.save(user);
+    public UserDTO saveUser(UserEntity userEntity) {
+        UserDTO userDTO = UserDTO.builder().build().convertEntityToDTO(userEntity);
+        boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
+        if (!userExist){
+            userRepository.save(userEntity);
+        }
         return userDTO;
     }
 
@@ -44,5 +47,7 @@ public class UserServiceImpl implements IUserService {
         var userEntity = userRepository.findById(id).orElse(null);
         return UserDTO.builder().build().convertEntityToDTO(userEntity);
     }
+
+
 
 }
