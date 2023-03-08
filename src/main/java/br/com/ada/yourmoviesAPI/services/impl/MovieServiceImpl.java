@@ -32,8 +32,9 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     public MovieEntity convertDTOtoEntity (MovieDTO movieDTO){
+
         return MovieEntity.builder()
-                .nameMovie(movieDTO.getNameMovie())
+                .title(movieDTO.getTitle())
                 .genre(movieDTO.getGenre())
                 .imdbRating(movieDTO.getImdbRating())
                 .yearMovie(movieDTO.getYearMovie())
@@ -48,9 +49,10 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public MovieEntity findByEmail(String email) {
+    public MovieEntity findByTitle(String email) {
         return null;
     }
+
 
     @Override
     public List<MovieEntity> findAllMovies() {

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Builder
 public class MovieDTO {
 
-    private String nameMovie;
+    private String title;
     private String genre;
 
     private Long yearMovie;

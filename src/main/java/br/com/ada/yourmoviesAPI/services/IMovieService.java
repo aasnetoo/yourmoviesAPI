@@ -10,7 +10,7 @@ import java.util.List;
 public interface IMovieService {
 
     MovieEntity saveMovie(MovieDTO movie);
-    MovieEntity findByEmail (String email);
+    MovieEntity findByTitle (String email);
     List<MovieEntity> findAllMovies();
     void deleteById(Long id);
     MovieEntity getById (Long id);

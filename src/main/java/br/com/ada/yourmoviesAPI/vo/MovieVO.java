@@ -12,7 +12,7 @@ import lombok.Setter;
 public class MovieVO{
 
     private Long id;
-    private String nameMovie;
+    private String title;
     private String genre;
 
     private Long yearMovie;
@@ -22,7 +22,7 @@ public class MovieVO{
     public MovieVO convertMovieEntityToVO (MovieEntity movieEntity){
         return MovieVO.builder()
                 .id(movieEntity.getId())
-                .nameMovie(movieEntity.getNameMovie())
+                .title(movieEntity.getTitle())
                 .genre(movieEntity.getGenre())
                 .imdbRating(movieEntity.getImdbRating())
                 .yearMovie(movieEntity.getYearMovie())
