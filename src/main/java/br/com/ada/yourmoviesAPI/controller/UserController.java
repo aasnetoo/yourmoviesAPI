@@ -27,6 +27,11 @@ public class UserController {
         return userService.findAllUsers();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> findById (@PathVariable ("id") Long id){
+        return new ResponseEntity<>(userService.findById(id), HttpStatus.CREATED);
+    }
+
 
 
 }
