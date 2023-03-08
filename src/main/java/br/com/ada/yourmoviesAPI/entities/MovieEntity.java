@@ -11,20 +11,18 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Table(name = "db_movies")
-public class MoviesEntity {
+public class MovieEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nameMovie;
+    private String title;
     private String genre;
 
     private Long yearMovie;
 
     private Double imdbRating;
-
-    private Double yourRating;
 
     private Long users_id;
 
