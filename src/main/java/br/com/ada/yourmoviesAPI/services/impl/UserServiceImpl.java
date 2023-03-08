@@ -39,4 +39,10 @@ public class UserServiceImpl implements IUserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public UserDTO findById(Long id) {
+        var userEntity = userRepository.findById(id).orElse(null);
+        return UserDTO.builder().build().convertEntityToDTO(userEntity);
+    }
+
 }
