@@ -3,6 +3,8 @@ package br.com.ada.yourmoviesAPI.services.impl;
 import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
+import br.com.ada.yourmoviesAPI.exceptions.UserExistException;
+import br.com.ada.yourmoviesAPI.mapper.UserMapper;
 import br.com.ada.yourmoviesAPI.repository.UserRepository;
 import br.com.ada.yourmoviesAPI.request.UserRequest;
 import br.com.ada.yourmoviesAPI.services.IUserService;
@@ -18,17 +20,20 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserMapper mapper;
+
     @Override
-    public UserDTO saveUser(UserRequest userEntity) {
-        UserDTO userDTO = UserDTO.builder().build().convertUserEntityToDTO(userEntity);
+    public UserEntity saveUser(UserDTO userDTO) throws UserExistException {
+        UserEntity userEntity = mapper.UserDTOtoUserEntity(userDTO);
         boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
         if (userEntity.getPassword().length() < 8){
             throw new IllegalArgumentException("A senha deve ser superior a 8 caracteres!");
         }
-        if (!userExist){
-            userRepository.save(userEntity);
+        if (userExist){
+            throw new UserExistException();
         }
-        return userDTO;
+        return userRepository.save(userEntity);
     }
 
     @Override

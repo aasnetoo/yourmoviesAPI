@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 public class UserRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idRequest;
     private String name;
     private String email;
     private String password;
