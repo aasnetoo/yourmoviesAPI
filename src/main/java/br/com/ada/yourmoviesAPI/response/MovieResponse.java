@@ -1,6 +1,5 @@
-package br.com.ada.yourmoviesAPI.vo;
+package br.com.ada.yourmoviesAPI.response;
 
-import br.com.ada.yourmoviesAPI.dto.MovieDTO;
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class MovieVO{
+public class MovieResponse {
 
     private Long id;
     private String title;
@@ -19,8 +18,8 @@ public class MovieVO{
 
     private Double imdbRating;
 
-    public MovieVO convertMovieEntityToVO (MovieEntity movieEntity){
-        return MovieVO.builder()
+    public MovieResponse convertMovieEntityToVO (MovieEntity movieEntity){
+        return MovieResponse.builder()
                 .id(movieEntity.getId())
                 .title(movieEntity.getTitle())
                 .genre(movieEntity.getGenre())

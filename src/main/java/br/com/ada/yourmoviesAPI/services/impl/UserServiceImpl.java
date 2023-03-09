@@ -4,6 +4,7 @@ import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.repository.UserRepository;
+import br.com.ada.yourmoviesAPI.request.UserRequest;
 import br.com.ada.yourmoviesAPI.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements IUserService {
     UserRepository userRepository;
 
     @Override
-    public UserDTO saveUser(UserEntity userEntity) {
+    public UserDTO saveUser(UserRequest userEntity) {
         UserDTO userDTO = UserDTO.builder().build().convertUserEntityToDTO(userEntity);
         boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
         if (userEntity.getPassword().length() < 8){

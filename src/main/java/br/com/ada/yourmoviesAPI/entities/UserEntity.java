@@ -22,10 +22,8 @@ public class UserEntity {
     private Long id;
 
     private String name;
-    @Email(message = "Email is not valid")
     private String email;
 
-    @Min(5)
     private String password;
 
     @OneToMany
