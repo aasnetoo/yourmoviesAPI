@@ -2,17 +2,13 @@ package br.com.ada.yourmoviesAPI.services.impl;
 
 import br.com.ada.yourmoviesAPI.client.MovieOMDBFeign;
 import br.com.ada.yourmoviesAPI.dto.MovieDTO;
-import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
-import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.repository.MovieRepository;
 import br.com.ada.yourmoviesAPI.services.IMovieService;
-import br.com.ada.yourmoviesAPI.services.IUserService;
-import br.com.ada.yourmoviesAPI.vo.MovieOMDB;
+import br.com.ada.yourmoviesAPI.response.MovieOMDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +30,6 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     public MovieEntity convertDTOtoEntity (MovieDTO movieDTO){
-
         return MovieEntity.builder()
                 .title(movieDTO.getTitle())
                 .genre(movieDTO.getGenre())

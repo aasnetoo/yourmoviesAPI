@@ -1,7 +1,7 @@
 package br.com.ada.yourmoviesAPI.client;
 
 
-import br.com.ada.yourmoviesAPI.vo.MovieOMDB;
+import br.com.ada.yourmoviesAPI.response.MovieOMDB;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -3,6 +3,9 @@ package br.com.ada.yourmoviesAPI.services;
 import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
+import br.com.ada.yourmoviesAPI.exceptions.UserExistException;
+import br.com.ada.yourmoviesAPI.request.UserRequest;
+import br.com.ada.yourmoviesAPI.response.UserResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +13,13 @@ import java.util.Optional;
 public interface IUserService {
 
 
-    UserDTO saveUser(UserEntity user);
+    UserEntity saveUser(UserDTO user) throws UserExistException;
     UserEntity findByEmail (String email) throws IdNotFoundException;
-    List<UserEntity> findAllUsers();
+    List<UserResponse> findAllUsers();
     void deleteById(Long id);
 
 
-    UserDTO findById(Long id) throws IdNotFoundException;
+    UserResponse findById(Long id) throws IdNotFoundException;
 
 
 }

@@ -15,16 +15,10 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class UserDTO {
 
+    private Long id;
     private String name;
-    @Email(message = "Email nao e valido")
-    @NotEmpty(message = "Email nao pode ser vazio.")
     private String email;
+    private String password;
 
-
-
-    public UserDTO convertUserEntityToDTO (UserEntity userEntity){
-        BeanUtils.copyProperties(userEntity,this,"id", "password", "moviesEntity");
-        return this;
-    }
 
 }

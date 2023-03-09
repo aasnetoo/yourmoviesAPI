@@ -1,4 +1,4 @@
-package br.com.ada.yourmoviesAPI.vo;
+package br.com.ada.yourmoviesAPI.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

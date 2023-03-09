@@ -3,7 +3,11 @@ package br.com.ada.yourmoviesAPI.services.impl;
 import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
+import br.com.ada.yourmoviesAPI.exceptions.UserExistException;
+import br.com.ada.yourmoviesAPI.mapper.UserMapper;
 import br.com.ada.yourmoviesAPI.repository.UserRepository;
+import br.com.ada.yourmoviesAPI.request.UserRequest;
+import br.com.ada.yourmoviesAPI.response.UserResponse;
 import br.com.ada.yourmoviesAPI.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,17 +21,21 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserMapper mapper;
+
     @Override
-    public UserDTO saveUser(UserEntity userEntity) {
-        UserDTO userDTO = UserDTO.builder().build().convertUserEntityToDTO(userEntity);
+    public UserEntity saveUser(UserDTO userDTO) throws UserExistException {
+        UserEntity userEntity = mapper.UserDTOToUserEntity(userDTO);
         boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
         if (userEntity.getPassword().length() < 8){
             throw new IllegalArgumentException("A senha deve ser superior a 8 caracteres!");
         }
-        if (!userExist){
-            userRepository.save(userEntity);
+        if (userExist){
+            throw new UserExistException();
         }
-        return userDTO;
+        userRepository.save(userEntity);
+        return userEntity;
     }
 
     @Override
@@ -38,8 +46,8 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public List<UserEntity> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> findAllUsers() {
+        return mapper.listUserEntityToListUserResponse(userRepository.findAll());
     }
 
     @Override
@@ -48,9 +56,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDTO findById(Long id) throws IdNotFoundException {
-        var userEntity = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
-        return UserDTO.builder().build().convertUserEntityToDTO(userEntity);
+    public UserResponse findById(Long id) throws IdNotFoundException {
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
+        return mapper.UserEntityToUserResponse(userEntity);
     }
 
 
