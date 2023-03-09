@@ -3,6 +3,9 @@ package br.com.ada.yourmoviesAPI.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,8 +22,10 @@ public class UserEntity {
     private Long id;
 
     private String name;
+    @Email(message = "Email is not valid")
     private String email;
 
+    @Min(5)
     private String password;
 
     @OneToMany

@@ -2,6 +2,7 @@ package br.com.ada.yourmoviesAPI.services.impl;
 
 import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
+import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.repository.UserRepository;
 import br.com.ada.yourmoviesAPI.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDTO saveUser(UserEntity userEntity) {
-        UserDTO userDTO = UserDTO.builder().build().convertEntityToDTO(userEntity);
+        UserDTO userDTO = UserDTO.builder().build().convertUserEntityToDTO(userEntity);
         boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
         if (userEntity.getPassword().length() < 8){
             throw new IllegalArgumentException("A senha deve ser superior a 8 caracteres!");
@@ -30,8 +31,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserEntity findByEmail(String email) {
-        return userRepository.findByEmail(email).orElse(null); //TODO fazer uma exception
+    public UserEntity findByEmail(String email) throws IdNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(IdNotFoundException::new);
 
     }
 
@@ -47,9 +48,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDTO findById(Long id) {
-        var userEntity = userRepository.findById(id).orElse(null);
-        return UserDTO.builder().build().convertEntityToDTO(userEntity);
+    public UserDTO findById(Long id) throws IdNotFoundException {
+        var userEntity = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
+        return UserDTO.builder().build().convertUserEntityToDTO(userEntity);
     }
 
 
