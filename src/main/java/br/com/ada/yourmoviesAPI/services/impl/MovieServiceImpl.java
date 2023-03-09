@@ -5,12 +5,14 @@ import br.com.ada.yourmoviesAPI.dto.MovieDTO;
 import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
+import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.repository.MovieRepository;
 import br.com.ada.yourmoviesAPI.services.IMovieService;
 import br.com.ada.yourmoviesAPI.services.IUserService;
 import br.com.ada.yourmoviesAPI.vo.MovieOMDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,8 +67,9 @@ public class MovieServiceImpl implements IMovieService {
 
     }
 
+
     @Override
-    public MovieEntity getById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Movie not found")); //TODO fazer uma excepction especifica
+    public MovieEntity getById(Long id) throws IdNotFoundException {
+        return movieRepository.findById(id).orElseThrow(IdNotFoundException::new); //TODO fazer uma excepction especifica
     }
 }
