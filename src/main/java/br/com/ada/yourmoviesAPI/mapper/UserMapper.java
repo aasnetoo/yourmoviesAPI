@@ -14,16 +14,16 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserDTO UserEntityToUserDTO (UserEntity entity);
-    UserEntity UserDTOToUserEntity (UserDTO dto);
-    UserResponse UserDTOToUserReponse(UserDTO dto);
+    UserDTO userEntityToUserDTO (UserEntity entity);
+    UserEntity userDTOToUserEntity (UserDTO dto);
+    UserResponse userDTOToUserReponse(UserDTO dto);
 
     @Named("mapWithoutIdAndPassword")
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "password", ignore = true)
-    UserEntity UserResponseToUserEntity (UserResponse response);
+    UserEntity userResponseToUserEntity (UserResponse response);
     @InheritInverseConfiguration
-    UserResponse UserEntityToUserResponse (UserEntity entity);
+    UserResponse userEntityToUserResponse (UserEntity entity);
 
 
     UserRequest UserDTOToUserRequest(UserDTO dto);

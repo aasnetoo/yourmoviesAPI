@@ -1,6 +1,7 @@
 package br.com.ada.yourmoviesAPI.dto;
 
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,6 @@ public class MovieDTO {
     private String genre;
 
     private Long yearMovie;
-
     private Double imdbRating;
 
 
