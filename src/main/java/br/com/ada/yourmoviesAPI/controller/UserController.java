@@ -1,6 +1,5 @@
 package br.com.ada.yourmoviesAPI.controller;
 
-import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.exceptions.UserExistException;
@@ -26,12 +25,12 @@ public class UserController {
     private UserMapper mapper;
 
     @PostMapping
-    public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserRequest user) throws UserExistException {
+    public ResponseEntity<UserEntity> createUser(@Valid @RequestBody  UserRequest user) throws UserExistException {
 
         return new ResponseEntity<>(userService.saveUser(mapper.UserRequestToUserDTO(user)), HttpStatus.CREATED); //TODO Ver isso do UserDTO ou UserEntity
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<UserResponse> findAll(){
         return userService.findAllUsers();
     }

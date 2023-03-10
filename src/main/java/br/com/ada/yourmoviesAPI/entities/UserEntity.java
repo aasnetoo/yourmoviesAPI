@@ -3,9 +3,6 @@ package br.com.ada.yourmoviesAPI.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,8 +23,8 @@ public class UserEntity {
 
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "users_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movies_id",referencedColumnName = "id")
     private Set<MovieEntity> moviesEntity;
 
     @Override
