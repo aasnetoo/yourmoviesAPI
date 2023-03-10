@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -23,8 +23,7 @@ public class UserEntity {
 
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movies_id",referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<MovieEntity> moviesEntity;
 
     @Override

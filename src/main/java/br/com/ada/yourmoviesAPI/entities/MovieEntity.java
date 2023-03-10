@@ -1,8 +1,11 @@
 package br.com.ada.yourmoviesAPI.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
@@ -23,8 +26,12 @@ public class MovieEntity {
     private Long yearMovie;
 
     private Double imdbRating;
-
-    private Long users_id;
+    @ManyToOne(
+            fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserEntity user;
 
 
 }

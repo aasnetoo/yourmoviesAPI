@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/yourmovies")
 public class UserController {
 
     @Autowired
@@ -24,18 +24,18 @@ public class UserController {
     @Autowired
     private UserMapper mapper;
 
-    @PostMapping
+    @PostMapping("/users")
     public ResponseEntity<UserEntity> createUser(@Valid @RequestBody  UserRequest user) throws UserExistException {
 
         return new ResponseEntity<>(userService.saveUser(mapper.UserRequestToUserDTO(user)), HttpStatus.CREATED); //TODO Ver isso do UserDTO ou UserEntity
     }
 
-    @GetMapping("/all")
+    @GetMapping("/users/all")
     public List<UserResponse> findAll(){
         return userService.findAllUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> findById (@PathVariable ("id") Long id) throws IdNotFoundException {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.ACCEPTED);
     }

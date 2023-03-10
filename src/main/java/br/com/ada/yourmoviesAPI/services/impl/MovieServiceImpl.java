@@ -4,7 +4,9 @@ import br.com.ada.yourmoviesAPI.client.MovieOMDBFeign;
 import br.com.ada.yourmoviesAPI.dto.MovieDTO;
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
+import br.com.ada.yourmoviesAPI.mapper.MovieMapper;
 import br.com.ada.yourmoviesAPI.repository.MovieRepository;
+import br.com.ada.yourmoviesAPI.response.MovieResponse;
 import br.com.ada.yourmoviesAPI.services.IMovieService;
 import br.com.ada.yourmoviesAPI.response.MovieOMDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,37 +26,31 @@ public class MovieServiceImpl implements IMovieService {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private MovieMapper mapper;
 
     public MovieOMDB getMovie (String theme){
         return movieOMDBFeign.getMovie(theme,apiKey);
     }
 
-    public MovieEntity convertDTOtoEntity (MovieDTO movieDTO){
-        return MovieEntity.builder()
-                .title(movieDTO.getTitle())
-                .genre(movieDTO.getGenre())
-                .imdbRating(movieDTO.getImdbRating())
-                .yearMovie(movieDTO.getYearMovie())
-                .build();
-    }
 
 
     @Override
     public MovieEntity saveMovie(MovieDTO movie) {
-        MovieEntity movieEntity = convertDTOtoEntity(movie);
+        MovieEntity movieEntity = mapper.movieDtoToMovieENtity(movie);
         return movieRepository.save(movieEntity);
     }
 
     @Override
-    public MovieEntity findByTitle(String email) {
+    public MovieEntity findByTitle(String title) {
         return null;
     }
-
 
     @Override
-    public List<MovieEntity> findAllMovies() {
-        return null;
+    public List<MovieResponse> findByUserId(Long userId) {
+        return mapper.listMovieEntityToListMovieResponse(movieRepository.findByUserId(userId));
     }
+
 
     @Override
     public void deleteById(Long id) {

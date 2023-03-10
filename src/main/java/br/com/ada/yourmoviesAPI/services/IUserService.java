@@ -14,10 +14,10 @@ public interface IUserService {
 
 
     UserEntity saveUser(UserDTO user) throws UserExistException;
-    UserEntity findByEmail (String email) throws IdNotFoundException;
+    UserEntity findByEmail (String title) throws IdNotFoundException;
     List<UserResponse> findAllUsers();
     void deleteById(Long id);
-
+    Boolean existsById (Long id);
 
     UserResponse findById(Long id) throws IdNotFoundException;
 
