@@ -1,6 +1,5 @@
 package br.com.ada.yourmoviesAPI.controller;
 
-import br.com.ada.yourmoviesAPI.dto.MovieDTO;
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import br.com.ada.yourmoviesAPI.exceptions.ResourceNotFoundException;
 import br.com.ada.yourmoviesAPI.mapper.MovieMapper;
@@ -80,6 +79,21 @@ public class MovieController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @DeleteMapping("/movies/{id}")
+    public ResponseEntity<HttpStatus> deleteMovieById (@PathVariable("id") Long id){
+        movieService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/users/{userid}/movies")
+    public ResponseEntity<HttpStatus> deleteAllMoviesOfAnUser(@PathVariable(value = "userid") Long userid) throws ResourceNotFoundException {
+        if (!userService.existsById(userid)){
+            throw new ResourceNotFoundException();
+        }
+        movieService.deleteByUserId(userid);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

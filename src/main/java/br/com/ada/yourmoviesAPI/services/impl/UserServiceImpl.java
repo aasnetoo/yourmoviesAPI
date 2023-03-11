@@ -66,6 +66,10 @@ public class UserServiceImpl implements IUserService {
         return mapper.userEntityToUserResponse(userEntity);
     }
 
+    @Override
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
 
 
 }
