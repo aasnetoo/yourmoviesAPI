@@ -40,6 +40,18 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/users")
+    public ResponseEntity<HttpStatus> deleteAllUser(){
+        userService.deleteAllUsers();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<HttpStatus> deleteUserById(@PathVariable("id") Long id){
+        userService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }

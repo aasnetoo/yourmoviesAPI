@@ -21,5 +21,7 @@ public interface IUserService {
 
     UserResponse findById(Long id) throws IdNotFoundException;
 
+    void deleteAllUsers();
+
 
 }

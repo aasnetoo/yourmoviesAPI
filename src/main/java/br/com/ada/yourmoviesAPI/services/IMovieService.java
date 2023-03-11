@@ -13,9 +13,9 @@ public interface IMovieService {
 
     MovieEntity saveMovie(MovieDTO movie);
     MovieEntity findByTitle (String title);
-
     List<MovieResponse> findByUserId(Long userId);
     void deleteById(Long id);
     MovieEntity getById (Long id) throws IdNotFoundException;
+    void deleteByUserId (Long userId);
 
 }
