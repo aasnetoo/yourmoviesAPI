@@ -7,12 +7,13 @@ import br.com.ada.yourmoviesAPI.mapper.UserMapper;
 import br.com.ada.yourmoviesAPI.request.UserRequest;
 import br.com.ada.yourmoviesAPI.response.UserResponse;
 import br.com.ada.yourmoviesAPI.services.impl.UserServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -25,9 +26,8 @@ public class UserController {
     private UserMapper mapper;
 
     @PostMapping("/users")
-    public ResponseEntity<UserEntity> createUser(@Valid @RequestBody  UserRequest user) throws UserExistException {
-
-        return new ResponseEntity<>(userService.saveUser(mapper.UserRequestToUserDTO(user)), HttpStatus.CREATED); //TODO Ver isso do UserDTO ou UserEntity
+    public ResponseEntity<UserEntity> createUser(@Valid @RequestBody UserRequest user) throws UserExistException {
+        return new ResponseEntity<>(userService.saveUser(mapper.UserRequestToUserDTO(user)), HttpStatus.CREATED);
     }
 
     @GetMapping("/users/all")

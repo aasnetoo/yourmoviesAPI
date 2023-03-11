@@ -2,10 +2,12 @@ package br.com.ada.yourmoviesAPI.request;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 
-import javax.validation.constraints.*;
 
 @Getter
 @Setter
