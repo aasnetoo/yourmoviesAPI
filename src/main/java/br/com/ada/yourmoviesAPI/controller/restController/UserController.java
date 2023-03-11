@@ -1,4 +1,4 @@
-package br.com.ada.yourmoviesAPI.controller;
+package br.com.ada.yourmoviesAPI.controller.restController;
 
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;

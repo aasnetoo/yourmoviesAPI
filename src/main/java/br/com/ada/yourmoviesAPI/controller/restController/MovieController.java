@@ -1,4 +1,4 @@
-package br.com.ada.yourmoviesAPI.controller;
+package br.com.ada.yourmoviesAPI.controller.restController;
 
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import br.com.ada.yourmoviesAPI.exceptions.ResourceNotFoundException;
