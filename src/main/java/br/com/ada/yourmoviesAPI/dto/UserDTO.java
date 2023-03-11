@@ -4,8 +4,6 @@ import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 
 @Getter @Setter

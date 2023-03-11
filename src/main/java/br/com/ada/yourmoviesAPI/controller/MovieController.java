@@ -36,7 +36,7 @@ public class MovieController {
 
 
     @GetMapping("/omdb/{theme}")
-    public ResponseEntity<MovieOMDB> getMovie(@PathVariable String theme){
+    public ResponseEntity<MovieOMDB> getMovie(@RequestParam String theme){
         try {
             MovieOMDB movieOMDB = movieService.getMovie(theme);
             return ResponseEntity.status(HttpStatus.OK).body(movieOMDB);
