@@ -61,9 +61,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserResponse findById(Long id) throws IdNotFoundException {
+    public UserEntity findById(Long id) throws IdNotFoundException {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(IdNotFoundException::new);
-        return mapper.userEntityToUserResponse(userEntity);
+        return userEntity;
     }
 
     @Override

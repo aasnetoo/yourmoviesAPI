@@ -38,7 +38,7 @@ public class UserWebController {
     public String listUsers(Model model){
         model.addAttribute("users",userService.findAllUsers());
 
-        return "list.html";
+        return "list";
     }
 
 

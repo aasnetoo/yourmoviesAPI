@@ -18,6 +18,9 @@ public interface UserMapper {
     UserEntity userDTOToUserEntity (UserDTO dto);
     UserResponse userDTOToUserReponse(UserDTO dto);
 
+    UserDTO userRequestToUserDTO (UserRequest userRequest);
+
+
     @Named("mapWithoutIdAndPassword")
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "password", ignore = true)
