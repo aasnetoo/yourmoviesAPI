@@ -16,15 +16,31 @@ Para o front-end, foi usado o framework Thymeleaf.
 ```java
 import YourMovies
 
-# add um Usuário
+# add um Usuário - localhost:8080/yourmovies/users
 Ele irá 'salvar' seus dados ('nome, e-mail e senha') e irá gerar um ID único para você.
 Retornando para você como confirmação seu nome e seu e-mail, não retornando a senha
 como forma de segurança.
+
+'Exemplo de Usuario'
+{
+	"name": "Antonio Neto",
+	"email": "antonioneto@gmail.com",
+	"password": "12345678"
+	 
+}
 
 # Validação do 'Usuário'
 ('nome') = não pode ser em branco;
 ('email') = deve conter o padrão de e-mail;
 ('senha') = deve ter no minimo 4 caracteres e no máximo 15 caracteres.
+
+# Pegar ID por usuario localhost:8080/yourmovies/users/1
+# Listar todos os Usuarios localhost:8080/yourmovies/users/all
+# Pegar um filme e suas informações localhost:8080/yourmovies/omdb/nome+do+filme
+# Adicionar um filme a um usuario - localhost:8080/yourmovies/users/{idDoUsuario}/save
+# Listar todos os Filmes do Usuario - localhost:8080/yourmovies/users/{idDoUsuario}/allmovies
+# Deletar filme por ID do filme - localhost:8080/yourmovies/movies/{idDoFilme}
+# Deletar todos os filmes de um Usuario por ID do usuario - localhost:8080/yourmovies/users/{idDoUsuario}/movies
 
 
 # Pesquisar seu filme favorito através da nossa API
@@ -34,7 +50,7 @@ Informações que você irá receber do Filme:
 'Titulo' do filme; 'Genero' do filme, 'Ano' do filme e o 'imdb Rating' do filme.
 
 # Adicionar o filme no seu Usuário
-A partir disso, você consegue adicionar quantas filmes quiser no seu usuário!
+A partir disso, você consegue adicionar quantos filmes quiser no seu usuário!
 ```
 
 ## Contribuição
