@@ -1,5 +1,6 @@
-package br.com.ada.yourmoviesAPI.controller;
+package br.com.ada.yourmoviesAPI.controller.restController;
 
+import br.com.ada.yourmoviesAPI.dto.UserDTO;
 import br.com.ada.yourmoviesAPI.entities.UserEntity;
 import br.com.ada.yourmoviesAPI.exceptions.IdNotFoundException;
 import br.com.ada.yourmoviesAPI.exceptions.UserExistException;
@@ -37,7 +38,25 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> findById (@PathVariable ("id") Long id) throws IdNotFoundException {
-        return new ResponseEntity<>(userService.findById(id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(mapper.userEntityToUserResponse(userService.findById(id)), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/users/{id}")
+    public ResponseEntity<UserResponse> updateUser(@PathVariable("id") Long id, @RequestBody UserRequest userRequest) throws IdNotFoundException, UserExistException {
+        UserEntity oldUser = userService.findById(id);
+
+        UserEntity newUser = UserEntity
+                .builder()
+                .name(userRequest.getName())
+                .email(userRequest.getEmail())
+                .password(userRequest.getPassword())
+                .build();
+
+        UserDTO newUserDto = mapper.userEntityToUserDTO(newUser);
+
+        return new ResponseEntity<>(mapper.userEntityToUserResponse(userService.saveUser(newUserDto)),HttpStatus.OK);
+
+
     }
 
     @DeleteMapping("/users")

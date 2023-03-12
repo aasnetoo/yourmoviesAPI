@@ -1,4 +1,4 @@
-package br.com.ada.yourmoviesAPI.controller;
+package br.com.ada.yourmoviesAPI.controller.restController;
 
 import br.com.ada.yourmoviesAPI.entities.MovieEntity;
 import br.com.ada.yourmoviesAPI.exceptions.ResourceNotFoundException;
@@ -36,7 +36,7 @@ public class MovieController {
 
 
     @GetMapping("/omdb/{theme}")
-    public ResponseEntity<MovieOMDB> getMovie(@RequestParam String theme){
+    public ResponseEntity<MovieOMDB> getMovie(@PathVariable String theme){
         try {
             MovieOMDB movieOMDB = movieService.getMovie(theme);
             return ResponseEntity.status(HttpStatus.OK).body(movieOMDB);
@@ -62,7 +62,7 @@ public class MovieController {
 
     @GetMapping("/users/{userid}/allmovies")
     public ResponseEntity<List<MovieResponse>> getAllMoviesByUserId(@PathVariable(value = "userid") Long userId) throws ResourceNotFoundException {
-        if (userService.existsById(userId)){
+        if (!userService.existsById(userId)){
             throw new ResourceNotFoundException();
         }
         List<MovieResponse> movies = movieService.findByUserId(userId);

@@ -1,9 +1,8 @@
 package br.com.ada.yourmoviesAPI.response;
 
-import br.com.ada.yourmoviesAPI.entities.MovieEntity;
-import br.com.ada.yourmoviesAPI.entities.UserEntity;
+
 import lombok.*;
-import org.apache.catalina.User;
+
 
 @Getter
 @Setter

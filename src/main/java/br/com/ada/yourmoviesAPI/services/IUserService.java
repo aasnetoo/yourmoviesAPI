@@ -19,7 +19,7 @@ public interface IUserService {
     void deleteById(Long id);
     Boolean existsById (Long id);
 
-    UserResponse findById(Long id) throws IdNotFoundException;
+    UserEntity findById(Long id) throws IdNotFoundException;
 
     void deleteAllUsers();
 
