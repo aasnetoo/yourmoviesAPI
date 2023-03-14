@@ -28,9 +28,6 @@ public class UserServiceImpl implements IUserService {
     public UserEntity saveUser(UserDTO userDTO) throws UserExistException {
         UserEntity userEntity = mapper.userDTOToUserEntity(userDTO);
         boolean userExist = userRepository.findAll().stream().anyMatch(user-> user.equals(userEntity));
-//        if (userEntity.getPassword().length() < 8){
-//            throw new IllegalArgumentException("A senha deve ser superior a 8 caracteres!");
-//        }
         if (userExist){
             throw new UserExistException();
         }

@@ -3,8 +3,10 @@ package br.com.ada.yourmoviesAPI.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Getter @Setter
@@ -15,8 +17,8 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     private String name;
     private String email;
@@ -25,6 +27,9 @@ public class UserEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<MovieEntity> moviesEntity;
+
+    @ManyToMany
+    private List<RoleEntity> roles;
 
     @Override
     public boolean equals(Object o) {
